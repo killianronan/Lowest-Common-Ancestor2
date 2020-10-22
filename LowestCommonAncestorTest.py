@@ -1,15 +1,20 @@
 import LowestCommonAncestor
+import unittest
 
-def test_LCA():
-	assert LowestCommonAncestor.findLCA(root, 4, 5) == 2, "Should be 2"
-	assert LowestCommonAncestor.findLCA(root, 4, 6) == 1, "Should be 1"
+class TestSum(unittest.TestCase):
+	def test_LCA(self):
+		self.assertEqual(LowestCommonAncestor.findLCA(root, 4, 5), 2, "Should be 2")
+		self.assertEqual(LowestCommonAncestor.findLCA(root, 4, 6), 1, "Should be 1")
+		self.assertEqual(LowestCommonAncestor.findLCA(root, 3, 4), 1, "Should be 1")
+		self.assertEqual(LowestCommonAncestor.findLCA(root, 2, 4), 2, "Should be 2")
 
-def testInvalid_LCA():
-	assert LowestCommonAncestor.findLCA(root, 4, 9) == -1, "Should be -1"
-	assert LowestCommonAncestor.findLCA(root, -1, 2) == -1, "Should be -1"
+	def testInvalid_LCA(self):
+		self.assertEqual(LowestCommonAncestor.findLCA(root, 4, 9), -1, "Should be -1")
+		self.assertEqual(LowestCommonAncestor.findLCA(root, -1, 2), -1, "Should be -1")
 
-def testNullRoot_LCA():
-	assert LowestCommonAncestor.findLCA(root, 4, 6) == -1, "Should be -1 (null root)"
+	def testNullRoot_LCA(self):
+		root = None;
+		self.assertEqual(LowestCommonAncestor.findLCA(root, 4, 6), -1, "Should be -1 (null root)")
 
 if __name__ == "__main__":
 	root = LowestCommonAncestor.Node(1) 
@@ -19,8 +24,4 @@ if __name__ == "__main__":
 	root.left.right = LowestCommonAncestor.Node(5) 
 	root.right.left = LowestCommonAncestor.Node(6) 
 	root.right.right = LowestCommonAncestor.Node(7) 
-	test_LCA()
-	testInvalid_LCA()
-	root = None;
-	testNullRoot_LCA()
-	print("All tests passed")
+	unittest.main()
